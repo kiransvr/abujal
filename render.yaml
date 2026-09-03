@@ -1,8 +1,6 @@
 services:
   - type: web
-    name: abujal-service
-    env: dotnet
-    rootDir: AbujalWebsite
-    buildCommand: "dotnet publish -c Release -o out"
-    startCommand: "dotnet out/AbujaWebsite.dll --urls=http://0.0.0.0:$PORT"
+    name: abujal-website
+    runtime: docker # Change this line from ruby or node to docker
+    repo: https://github.com
     plan: free
