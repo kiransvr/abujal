@@ -1,0 +1,40 @@
+@model AbujalWebsite.Models.Service
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section class="page-header">
+    <div class="container">
+        <h1>@Model.Title</h1>
+        <p class="mb-0">@Model.Summary</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <p>@Model.Description</p>
+                <h2 class="section-title h4 mt-4">Key Offerings</h2>
+                <ul>
+                    @foreach (var offering in Model.KeyOfferings)
+                    {
+                        <li>@offering</li>
+                    }
+                </ul>
+                <a class="btn btn-orange mt-3" asp-controller="Contact" asp-action="Index">Request a Consultation <i class="bi bi-arrow-right"></i></a>
+            </div>
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="service-card">
+                    <h3>Other Services</h3>
+                    <ul class="list-unstyled">
+                        @foreach (var other in ViewBag.OtherServices as IEnumerable<AbujalWebsite.Models.Service> ?? Enumerable.Empty<AbujalWebsite.Models.Service>())
+                        {
+                            <li class="mb-2"><a class="card-link" asp-action="Details" asp-route-slug="@other.Slug">@other.Title</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

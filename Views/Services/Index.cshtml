@@ -1,0 +1,29 @@
+@model IReadOnlyList<AbujalWebsite.Models.Service>
+@{
+    ViewData["Title"] = "Services";
+}
+
+<section class="page-header">
+    <div class="container">
+        <h1>Our Services</h1>
+        <p class="mb-0">Integrated research, training and consultancy solutions across six core service areas.</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            @foreach (var service in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card">
+                        <i class="bi @service.Icon service-icon"></i>
+                        <h3>@service.Title</h3>
+                        <p class="text-muted small mb-2">@service.Description</p>
+                        <a class="card-link" asp-action="Details" asp-route-slug="@service.Slug">Learn more <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

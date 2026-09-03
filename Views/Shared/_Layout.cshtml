@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Abujal Training, Research and Consultancy PLC</title>
+    <meta name="description" content="Abujal Training, Research and Consultancy PLC provides professional research, consultancy, training and institutional capacity-building solutions." />
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="topbar">
+        <div class="container topbar-inner">
+            <div class="topbar-contact">
+                <span><i class="bi bi-envelope"></i> abujaltrainingandresearch@gmail.com</span>
+                <span><i class="bi bi-telephone"></i> +251 911 833 974 | +251 914 704 141</span>
+            </div>
+            <div class="topbar-meta">
+                <span><i class="bi bi-geo-alt"></i> Addis Ababa, Ethiopia</span>
+                <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo.svg" alt="Abujal logo" height="42" />
+                    <span class="brand-text">
+                        <span class="brand-title">ABUJAL</span>
+                        <span class="brand-subtitle">Training, Research and Consultancy PLC</span>
+                    </span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav mx-auto main-nav">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Services" asp-action="Index">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Projects" asp-action="Index">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Insights" asp-action="Index">Insights</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="About" asp-action="Index">About</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Contact" asp-action="Index">Contact</a></li>
+                    </ul>
+                    <a class="btn btn-orange" asp-controller="Contact" asp-action="Index">Request a Consultation <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <div class="cta-banner">
+        <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div class="d-flex align-items-center gap-3">
+                <i class="bi bi-people-fill fs-1"></i>
+                <div>
+                    <h3 class="mb-1">Let's Create Impact Together</h3>
+                    <p class="mb-0">Partner with Abujal for evidence-based solutions that drive sustainable development.</p>
+                </div>
+            </div>
+            <a class="btn btn-orange" asp-controller="Contact" asp-action="Index">Request a Consultation <i class="bi bi-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <img src="~/images/logo.svg" alt="Abujal logo" height="36" />
+                        <span class="brand-text">
+                            <span class="brand-title text-white">ABUJAL</span>
+                            <span class="brand-subtitle">Training, Research and Consultancy PLC</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <nav class="footer-links">
+                        <a asp-controller="Home" asp-action="Index">Home</a> |
+                        <a asp-controller="About" asp-action="Index">About</a> |
+                        <a asp-controller="Services" asp-action="Index">Services</a> |
+                        <a asp-controller="Projects" asp-action="Index">Projects</a> |
+                        <a asp-controller="Insights" asp-action="Index">Insights</a> |
+                        <a asp-controller="Contact" asp-action="Index">Contact</a>
+                    </nav>
+                </div>
+                <div class="col-lg-4 footer-contact">
+                    <div><i class="bi bi-geo-alt"></i> Addis Ababa, Ethiopia</div>
+                    <div><i class="bi bi-telephone"></i> +251 911 833 974 | +251 914 704 141</div>
+                    <div><i class="bi bi-envelope"></i> abujaltrainingandresearch@gmail.com</div>
+                </div>
+            </div>
+            <hr />
+            <p class="text-center mb-0 small">&copy; @DateTime.Now.Year Abujal Training, Research and Consultancy PLC. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

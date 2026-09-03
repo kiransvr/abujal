@@ -1,0 +1,23 @@
+@model AbujalWebsite.Models.Project
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section class="page-header">
+    <div class="container">
+        <h1>@Model.Title</h1>
+        <p class="mb-0"><i class="bi bi-geo-alt"></i> @Model.Country | @Model.Year &nbsp;|&nbsp; <span class="badge badge-category">@Model.Category</span></p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <img src="@Model.ImageUrl" alt="@Model.Title" class="img-fluid rounded mb-4" />
+                <p>@Model.Body</p>
+                <a class="btn btn-outline-navy" asp-action="Index">Back to Projects</a>
+            </div>
+        </div>
+    </div>
+</section>

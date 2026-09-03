@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "AbujalWebsite/1.0.0": {
+        "runtime": {
+          "AbujalWebsite.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AbujalWebsite/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

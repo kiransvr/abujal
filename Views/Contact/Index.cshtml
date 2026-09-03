@@ -1,0 +1,74 @@
+@model AbujalWebsite.Models.ContactRequest
+@{
+    ViewData["Title"] = "Contact Us";
+    var services = ViewBag.Services as IEnumerable<AbujalWebsite.Models.Service> ?? Enumerable.Empty<AbujalWebsite.Models.Service>();
+}
+
+<section class="page-header">
+    <div class="container">
+        <h1>Request a Consultation</h1>
+        <p class="mb-0">Tell us about your organization's needs and we will get back to you.</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-7">
+                @if (TempData["ContactSuccess"] is string success)
+                {
+                    <div class="alert alert-success">@success</div>
+                }
+                <form asp-controller="Contact" asp-action="Index" method="post" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label">Full Name</label>
+                        <input asp-for="FullName" class="form-control" placeholder="Your name" />
+                        <span asp-validation-for="FullName" class="text-danger small"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" placeholder="you@example.com" />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Phone" class="form-label">Phone (optional)</label>
+                            <input asp-for="Phone" class="form-control" placeholder="+251 9xx xxx xxx" />
+                            <span asp-validation-for="Phone" class="text-danger small"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ServiceInterest" class="form-label">Service of Interest</label>
+                        <select asp-for="ServiceInterest" class="form-select">
+                            <option value="">Select a service</option>
+                            @foreach (var service in services)
+                            {
+                                <option value="@service.Title">@service.Title</option>
+                            }
+                        </select>
+                        <span asp-validation-for="ServiceInterest" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Message" class="form-label">Message</label>
+                        <textarea asp-for="Message" class="form-control" rows="5" placeholder="Tell us about your project or requirement"></textarea>
+                        <span asp-validation-for="Message" class="text-danger small"></span>
+                    </div>
+                    <button type="submit" class="btn btn-orange">Send Request <i class="bi bi-arrow-right"></i></button>
+                </form>
+            </div>
+            <div class="col-lg-5">
+                <div class="service-card">
+                    <h3>Get in Touch</h3>
+                    <p class="text-muted mb-2"><i class="bi bi-geo-alt"></i> Addis Ababa, Ethiopia</p>
+                    <p class="text-muted mb-2"><i class="bi bi-telephone"></i> +251 911 833 974 | +251 914 704 141</p>
+                    <p class="text-muted mb-0"><i class="bi bi-envelope"></i> abujaltrainingandresearch@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
