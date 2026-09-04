@@ -12,9 +12,6 @@ WORKDIR /app
 
 EXPOSE 8080
 
-RUN addgroup --system app && adduser --system --ingroup app app
-
 COPY --from=build /app/publish .
-USER app
 
 ENTRYPOINT ["sh", "-c", "export ASPNETCORE_URLS=http://0.0.0.0:${PORT:-8080}; dotnet AbujalWebsite.dll"]
