@@ -1,8 +1,7 @@
 services:
   - type: web
     name: abujal-service
-    env: dotnet
-    rootDir: AbujalWebsite
-    buildCommand: "dotnet publish -c Release -o output"
-    startCommand: "dotnet output/AbujalWebsite.dll --urls=http://0.0.0.0:$PORT"
+    env: node
+    buildCommand: "npm install && npm run build"
+    startCommand: "npm start"
     plan: free
