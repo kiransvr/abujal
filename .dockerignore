@@ -1,0 +1,10 @@
+bin/
+obj/
+out/
+.git/
+.gitignore
+.vscode/
+README*
+*.user
+*.suo
+*.cache
