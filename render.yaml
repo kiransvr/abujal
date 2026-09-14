@@ -1,7 +1,13 @@
 services:
   - type: web
-    name: abujal-service
-    env: node
-    buildCommand: "npm install && npm run build"
-    startCommand: "npm start"
+    name: abujal-website
+    runtime: docker
     plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    autoDeploy: true
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://0.0.0.0:$PORT
