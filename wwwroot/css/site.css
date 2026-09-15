@@ -119,8 +119,8 @@ body {
 
 /* Impact section photo strip */
 .impact-photo-strip img {
-  height: 130px;
-  width: 30%;
+  height: 330px;
+  width: 40%;
   object-fit: cover;
   border-radius: 8px;
 }
