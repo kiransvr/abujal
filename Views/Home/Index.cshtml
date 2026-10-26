@@ -3,6 +3,9 @@
     ViewData["Title"] = "Home";
     var services = (IReadOnlyList<Service>)ViewBag.Services;
     var featuredProjects = (IReadOnlyList<Project>)ViewBag.FeaturedProjects;
+    var clientLogos = (IReadOnlyList<string>)ViewBag.ClientLogos;
+    var corporateProfileUrl = ViewBag.CorporateProfileUrl as string;
+    var heroImages = (IReadOnlyList<string>)ViewBag.HeroImages;
 }
 
 <section class="hero">
@@ -21,8 +24,65 @@
                 </div>
             </div>
             <div class="col-lg-6 hero-image mt-4 mt-lg-0">
-                <img src="~/images/hero.png" alt="Abujal consultant" />
+                <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="hover">
+                    @if (heroImages.Count > 1)
+                    {
+                        <div class="carousel-indicators">
+                            @for (var i = 0; i < heroImages.Count; i++)
+                            {
+                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="@i"
+                                        class="@(i == 0 ? "active" : "")" aria-current="@(i == 0 ? "true" : null)"
+                                        aria-label="Show image @(i + 1)"></button>
+                            }
+                        </div>
+                    }
+                    <div class="carousel-inner">
+                        @for (var i = 0; i < heroImages.Count; i++)
+                        {
+                            <div class="carousel-item @(i == 0 ? "active" : "")">
+                                <img src="@Url.Content(heroImages[i])" alt="Abujal team and consultancy work" />
+                            </div>
+                        }
+                    </div>
+                    @if (heroImages.Count > 1)
+                    {
+                        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" aria-label="Previous image">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" aria-label="Next image">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
+                    }
+                </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="corporate-profile-section py-4">
+    <div class="container">
+        <div class="corporate-profile-card">
+            <div class="corporate-profile-copy">
+                <span class="corporate-profile-eyebrow">For institutional partners</span>
+                <h2>Explore the Abujal Corporate Profile</h2>
+                <p class="mb-0">Learn more about our capabilities, experience, and approach to creating lasting impact.</p>
+            </div>
+            @if (corporateProfileUrl is not null)
+            {
+                <a class="btn btn-orange btn-lg corporate-profile-button"
+                   href="@Url.Content(corporateProfileUrl)"
+                   download="Abujal-Corporate-Profile.pdf">
+                    <i class="bi bi-file-earmark-arrow-down" aria-hidden="true"></i>
+                    Download Corporate Profile
+                </a>
+            }
+            else
+            {
+                <span class="btn btn-outline-navy btn-lg corporate-profile-button" aria-disabled="true">
+                    <i class="bi bi-file-earmark-pdf" aria-hidden="true"></i>
+                    Corporate Profile PDF Coming Soon
+                </span>
+            }
         </div>
     </div>
 </section>
@@ -131,6 +191,47 @@
     </div>
 </section>
 
+<section class="py-5 client-logos-section">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="section-title d-inline-block">Our Clients &amp; Partners</h2>
+            <p class="text-muted mb-0">Organizations we are proud to work with.</p>
+        </div>
+        @if (clientLogos.Count > 0)
+        {
+            <div class="client-logo-marquee">
+                <div class="client-logo-track">
+                    <div class="client-logo-group">
+                        @foreach (var logoFile in clientLogos)
+                        {
+                            var logoName = System.IO.Path.GetFileNameWithoutExtension(logoFile).Replace("-", " ").Replace("_", " ");
+                            <div class="client-logo-card">
+                                <img src="@Url.Content($"~/images/clients/{Uri.EscapeDataString(logoFile)}")" alt="@logoName" loading="lazy" />
+                            </div>
+                        }
+                    </div>
+                    <div class="client-logo-group" aria-hidden="true">
+                        @foreach (var logoFile in clientLogos)
+                        {
+                            var logoName = System.IO.Path.GetFileNameWithoutExtension(logoFile).Replace("-", " ").Replace("_", " ");
+                            <div class="client-logo-card">
+                                <img src="@Url.Content($"~/images/clients/{Uri.EscapeDataString(logoFile)}")" alt="" loading="lazy" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="client-logo-placeholder">
+                <i class="bi bi-buildings" aria-hidden="true"></i>
+                <p class="mb-0">Client logos coming soon</p>
+            </div>
+        }
+    </div>
+</section>
+
 <section class="py-5">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -157,4 +258,3 @@
         </div>
     </div>
 </section>
-

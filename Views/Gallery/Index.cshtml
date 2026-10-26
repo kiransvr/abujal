@@ -1,0 +1,41 @@
+@model IReadOnlyList<AbujalWebsite.Controllers.GalleryImage>
+@{
+    ViewData["Title"] = "Gallery";
+}
+
+<section class="page-header">
+    <div class="container">
+        <h1>Gallery</h1>
+        <p class="mb-0">A look at our work, people, and partnerships.</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        @if (Model.Count == 0)
+        {
+            <div class="gallery-empty-state">
+                <i class="bi bi-images" aria-hidden="true"></i>
+                <h2>Photos coming soon</h2>
+                <p class="mb-0">Our gallery is being updated. Please check back soon.</p>
+            </div>
+        }
+        else
+        {
+            <div class="row g-4">
+                @foreach (var image in Model)
+                {
+                    <div class="col-sm-6 col-lg-4">
+                        <figure class="gallery-card">
+                            <img src="@image.ImageUrl" alt="@(image.Caption ?? "Gallery photo")" loading="lazy" />
+                            @if (image.Caption is not null)
+                            {
+                                <figcaption>@image.Caption</figcaption>
+                            }
+                        </figure>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
